@@ -1,11 +1,14 @@
 import { promptAction, router } from '@kit.ArkUI'
+import {  LoginReq } from '../common/req'
+import { loginRes } from '../model/loginModel'
+
 
 @Entry
 @Component
 struct Login {
 
-  @State username:string=''
-  @State password:string=''
+  @State username:string='alice'
+  @State password:string='okok'
 
   build() {
 
@@ -38,18 +41,26 @@ struct Login {
 
           Button('登录')
             .width('100%')
-            .onClick(()=>{
+            .onClick(async ()=>{
               if(this.username===''){
                 promptAction.showToast({message:'用户名为空'})
               }else if(this.password===''){
                 promptAction.showToast({message:'密码为空'})
               }else {
-                promptAction.showToast({message:'登录成功'})
-                setTimeout(()=>{
-                  router.pushUrl({
-                    url:"pages/HomePage"
+
+                let res:loginRes=await LoginReq(this.username,this.password)
+
+                if(res.state===200){
+                  promptAction.showToast({message:'登录成功'})
+                  setTimeout(()=>{
+                    router.pushUrl({
+                      url:"pages/HomePage"
+                    })
                   })
-                })
+                }else {
+                  console.log(`res:${JSON.stringify(res)}`)
+                  promptAction.showToast({message:'登录失败'})
+                }
               }
             })
 
