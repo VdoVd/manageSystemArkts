@@ -1,3 +1,4 @@
+import { router } from '@kit.ArkUI'
 
 interface homeList{
   title:string
@@ -127,7 +128,7 @@ struct HomePage {
               }.width('100%').justifyContent(FlexAlign.SpaceBetween)
               if(item.isExtend===true)
               Column({space:12}){
-                ForEach(item.arr,(item2:content)=>{
+                ForEach(item.arr,(item2:content,index2:number)=>{
                   Row({space:10}){
 
                     Row({space:15}){
@@ -146,6 +147,25 @@ struct HomePage {
                         })
 
                   }.width('100%').justifyContent(FlexAlign.SpaceBetween).margin({left:40})
+                  .onClick(()=>{
+                    if(index===0&&index2===0){
+                      router.pushUrl({
+                        url:"pages/systemManage/organizationManage"
+                      })
+                    }else if(index===0&&index2===1){
+                      router.pushUrl({
+                        url:"pages/systemManage/roleManage"
+                      })
+                    }else if(index===0&&index2===2){
+                      router.pushUrl({
+                        url:"pages/systemManage/systemSetting"
+                      })
+                    }else if(index===0&&index2===3){
+                      router.pushUrl({
+                        url:"pages/systemManage/systemMonitor"
+                      })
+                    }
+                  })
                 })
               }
             })

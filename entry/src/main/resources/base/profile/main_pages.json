@@ -1,6 +1,13 @@
 {
   "src": [
     "pages/Login",
-    "pages/HomePage"
+    "pages/HomePage",
+    "pages/systemManage/systemSetting",
+    "pages/systemManage/systemMonitor",
+    "pages/systemManage/roleManage",
+    "pages/systemManage/researchTool",
+    "pages/systemManage/organizationManage",
+    "pages/systemManage/messageNotification",
+    "pages/systemManage/communicationPage"
   ]
 }
